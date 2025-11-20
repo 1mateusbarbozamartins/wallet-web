@@ -36,7 +36,6 @@ export const TransactionForm = ({ onSuccess }: TransactionFormProps) => {
     handleSubmit,
     formState: { errors },
     setValue,
-    watch,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -93,10 +92,11 @@ export const TransactionForm = ({ onSuccess }: TransactionFormProps) => {
   };
 
   // Map categories to Select options
-  const categoryOptions = categories?.map((cat) => ({
-    value: cat.id,
-    label: `${cat.icon} ${cat.name}`,
-  })) || [];
+  const categoryOptions =
+    categories?.map(cat => ({
+      value: cat.id,
+      label: `${cat.icon} ${cat.name}`,
+    })) || [];
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -190,12 +190,7 @@ export const TransactionForm = ({ onSuccess }: TransactionFormProps) => {
       />
 
       {/* Date */}
-      <Input
-        label="Data"
-        type="date"
-        {...register('date')}
-        error={errors.date?.message}
-      />
+      <Input label="Data" type="date" {...register('date')} error={errors.date?.message} />
 
       {/* Submit */}
       <div className="flex gap-3 pt-4">
